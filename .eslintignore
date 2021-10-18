@@ -1,3 +1,8 @@
+package*.json
+tsconfig.json
+
+#### .gitignore
+
 # NPM and build files
 node_modules
 dist
@@ -9,8 +14,6 @@ junit.xml
 # Local files
 .npmrc
 .env
-.env.local
-.env.*.local
 *.priv
 *.log
 *.bak

@@ -2,18 +2,21 @@ module.exports = {
   root: true,
   env: {
     node: true,
+    browser: true,
+    es2021: true,
   },
-  extends: [
-    "plugin:vue/essential",
-    "eslint:recommended",
-    "@vue/typescript/recommended",
-    "@vue/prettier",
-    "@vue/prettier/@typescript-eslint",
-  ],
+  extends: ["@france-atelier/eslint-config-frontend-vue2"],
+  parser: "vue-eslint-parser",
   parserOptions: {
-    ecmaVersion: 2020,
+    parser: "@typescript-eslint/parser",
+  },
+  settings: {
+    "import/resolver": {
+      typescript: {},
+    },
   },
   rules: {
+    "@typescript-eslint/explicit-module-boundary-types": "off",
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
   },
