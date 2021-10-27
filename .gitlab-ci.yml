@@ -93,7 +93,9 @@ publish:
   script:
     - docker build --pull --tag "$IMAGE_TAG" .
     - docker tag $IMAGE_TAG $IMAGE_TAG:$VERSION
+    - docker tag $IMAGE_TAG $IMAGE_TAG:latest
     - docker push $IMAGE_TAG
     - docker push $IMAGE_TAG:$VERSION
+    - docker push $IMAGE_TAG:latest
   rules:
     - if: '$CI_COMMIT_BRANCH == "main"'

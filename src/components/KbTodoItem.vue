@@ -50,7 +50,7 @@ export default TypedVue.extend({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.todo-item {
+li.todo-item {
   display: inline-grid;
   grid-template-columns: auto 30px;
 }
