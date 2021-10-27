@@ -3,16 +3,20 @@
     <b-checkbox v-model="done" :class="style" size="lg" @input="toggle">{{
       message
     }}</b-checkbox>
+    <b-button-close @click="remove" />
   </li>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import { BFormCheckbox as BCheckbox } from "bootstrap-vue";
+import { TypedVue } from "@/store";
+import { BButtonClose, BFormCheckbox as BCheckbox } from "bootstrap-vue";
 
-export default Vue.extend({
+export default TypedVue.extend({
   name: "KbTodoItem",
-  components: { BCheckbox },
+  components: {
+    BButtonClose,
+    BCheckbox,
+  },
   props: {
     message: {
       type: String,
@@ -37,9 +41,17 @@ export default Vue.extend({
     toggle() {
       this.$emit("input", this.done);
     },
+    remove() {
+      this.$emit("remove");
+    },
   },
 });
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.todo-item {
+  display: inline-grid;
+  grid-template-columns: auto 30px;
+}
+</style>

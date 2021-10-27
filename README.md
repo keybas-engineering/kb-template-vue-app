@@ -7,6 +7,27 @@ and Vue-Router navigation.
 The [Bootstrap-Vue](https://bootstrap-vue.org/) component library has been
 setup and is the recommended base component library for this project.
 
+## Table of contents
+
+- [Frontend skeleton project](#frontend-skeleton-project)
+  - [Table of contents](#table-of-contents)
+  - [Configuration](#configuration)
+    - [NPM configuration](#npm-configuration)
+    - [Project configuration](#project-configuration)
+  - [Development](#development)
+    - [Workflow](#workflow)
+    - [Commands](#commands)
+    - [Project structure](#project-structure)
+    - [Stores and services](#stores-and-services)
+    - [Keeping the documentation up-to-date](#keeping-the-documentation-up-to-date)
+  - [Testing](#testing)
+  - [Deployment](#deployment)
+  - [Troubleshooting](#troubleshooting)
+  - [Related documentation](#related-documentation)
+    - [Installed CLI Plugins](#installed-cli-plugins)
+    - [Recommended documentation](#recommended-documentation)
+    - [Recommended tooling](#recommended-tooling)
+
 ## Configuration
 
 ### NPM configuration
@@ -20,13 +41,20 @@ This project is configured through environment variables. They should be set eit
 in the external environment (from command-line, docker...) or in the `.env` file when
 it is more practical to do so.
 
-All required variables are listed in the `.env.example` file. In code, they are
-declared in the `src/services/env.ts` file, that you can refer to for reference,
-and that you can update to add your own variables when required.
+All required variables are listed in the [`.env.example` file](deploy/.env.example).
+In code, they are declared in the [`src/services/env.ts` file](src/services/env.ts),
+that you can refer to for reference, and that you can update to add your own variables
+when required.
 
 Do **not** store secrets in the project's environment variables.
 
 ## Development
+
+This project has been configured for Node.js v16 (LTS) and NPM 8. If you're often
+working with other projects, you can install `nvm`
+([Linux version](https://github.com/nvm-sh/nvm),
+[Windows version](https://github.com/coreybutler/nvm-windows)) to help change
+Node versions quickly and often.
 
 ### Workflow
 
@@ -72,64 +100,60 @@ src/
   views/      Definition of views for the routes declared in router/.
 ```
 
+### Stores and services
+
+Stores have been setup with Vuex's
+[Pathify plugin](https://davestewart.github.io/vuex-pathify/#/intro/pathify),
+that you can use if you're familiar with it, or can uninstall otherwise.
+
+### Keeping the documentation up-to-date
+
+This project and its artifacts are not used solely by its developers, but also by
+sysadmins, security analysts, QA engineers, other developers, and a bunch of other
+professions. They expect that the documentation is kept up-to-date, in particular:
+
+- [This README](./README.md)
+- Most importantly, the deployment documentation:
+  - The [deploy/README.md](deploy/README.md) explaining how to run the project
+  - The [deploy/.env.example](deploy/.env.example) file that documents all
+    environment variables required to run this project (with or without Docker)
+  - The [deploy/docker-compose.yml](deploy/docker-compose.yml) file that documents
+    all the third-party services and their configuration
+
 ## Testing
 
 The test runner and assertion library is [Jest](https://jestjs.io/fr/),
 setup with the [Vue Test Utils](https://vue-test-utils.vuejs.org/guides/#getting-started).
 Tests are located in the `tests/unit` directory.
 
+If you're familiar with these, you can also use the
+[Vue Testing Library](https://github.com/testing-library/vue-testing-library) and/or its
+[custom Jest matchers](https://github.com/testing-library/jest-dom).
+
 Organization of tests in this repository is free-form. For instance, you may
 follow this structure:
 
-```
+```text
 test/
   fixtures/ Utilities specifically used to generate or inject test data.
   helpers/  General testing utilities.
   unit/     Unit tests for components, services, stores...
 ```
 
-For more details on how to write tests, see examples and the Vue Test Utils'
-documentation.
+For more details on how to write tests, please refer to examples in this project and to
+the Vue Test Utils' documentation (or the Vue Testing Library if you're using it instead).
 
 ## Deployment
 
-### Manual
+The easiest way to get this project up and running on a server or on your computer
+is using [Docker](https://www.docker.com/).
 
-You need to:
+For more details on how to deploy, see [deploy/README.md](deploy/README.md);
 
-- Clone this repository
-- Create a `.npmrc` file and configure an access token to Keybas' private NPM registry
-- Run `npm ci` to install required dependencies
-- Create a `.env` file and configure all environment variables
+## Troubleshooting
 
-Then you will be able to run the following command to build the project:
-
-```sh
-npm run build
-```
-
-In order to serve the built project, you will need to serve the `dist` folder
-generated at build time. For instance with Python:
-
-```sh
-cd dist
-# or python3 instead of python
-python -m http.server
-```
-
-### With Docker
-
-There is a Gitlab CI job configured that publishes a Docker image in the
-private container registry for this project. This job is run every time a
-commit is pushed/merged onto the `main` branch.
-
-It is possible to pull and run this image locally or on a server, after
-authenticating with `docker login`. You can also generate this image
-locally with `docker build .` after cloning the repository.
-
-It is recommended to use docker-compose to run this project, since you may
-depend on other services. Also, docker-compose helps with setting up
-environment variables for the container.
+If you're running into an issue with this project, please check the troubleshooting
+section in [deploy/README.md](deploy/README.md#troubleshooting).
 
 ## Related documentation
 
@@ -149,6 +173,7 @@ environment variables for the container.
 - [Vue CLI's configuration reference](https://cli.vuejs.org/config/)
 - [Vue-Router](https://router.vuejs.org/)
 - [Vuex](https://vuex.vuejs.org/guide/)
+- [Vuex Pathify](https://davestewart.github.io/vuex-pathify/#/intro/pathify)
 - [Bootstrap 4](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
 - [BootstrapVue](https://bootstrap-vue.org/docs/components)
 - [Vue Test Utils](https://vue-test-utils.vuejs.org/guides/#getting-started)

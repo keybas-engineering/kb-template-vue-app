@@ -3,16 +3,17 @@ import Vue from "vue";
 import Vuex, { Store } from "vuex";
 import { todoList } from "./todo-list";
 import createPersistedState from "vuex-persistedstate";
+import pathify from "@/services/pathify";
 
 Vue.use(Vuex);
 
-// All stores are loaded as modules
-// To declare an additional store, create an additional module
 const store = new Store({
+  // All stores are loaded as modules
+  // To declare an additional store, create an additional module
   modules: {
     todoList,
   },
-  plugins: [createPersistedState()],
+  plugins: [createPersistedState(), pathify.plugin],
 });
 
 export default store;

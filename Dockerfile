@@ -1,5 +1,5 @@
 # Prepare
-FROM node:14-bullseye-slim AS build-env
+FROM node:16-bullseye-slim AS build-env
 WORKDIR /app
 COPY .npmrc ./
 COPY tsconfig.json ./
@@ -20,4 +20,4 @@ RUN npm run build
 FROM nginx
 WORKDIR /app
 COPY --from=build-env /app/dist /app
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY deploy/nginx.conf /etc/nginx/nginx.conf
