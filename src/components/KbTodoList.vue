@@ -42,7 +42,7 @@ export default TypedVue.extend({
     removeOne(id: string) {
       const i = this.todoList.findIndex((item) => item.id === id);
       this.todoList.splice(i, 1);
-    }
+    },
   },
 });
 </script>

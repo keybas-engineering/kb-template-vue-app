@@ -18,11 +18,11 @@ export const todoList: StoreOptions<TodoItem[]> = {
   mutations: {
     append(state, item: TodoItem) {
       state.push(item);
-    }
+    },
   },
   actions: {
     addItem({ dispatch }, message: string) {
       dispatch("append", new TodoItem(message));
-    }
+    },
   },
 };

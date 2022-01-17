@@ -17,7 +17,11 @@ RUN npm run build
 
 # Package
 # Based on https://cli.vuejs.org/guide/deployment.html#docker-nginx
-FROM nginx
+FROM nginx:alpine
 WORKDIR /app
 COPY --from=build-env /app/dist /app
+COPY deploy/entrypoint.sh /entrypoint.sh
 COPY deploy/nginx.conf /etc/nginx/nginx.conf
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["nginx", "-g", "daemon off;"]

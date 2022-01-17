@@ -26,7 +26,7 @@ stages:
 
 .merge_requests: &merge_requests
   stage: test
-  image: node:14-bullseye-slim
+  image: node:16-bullseye-slim
   cache: *cache
   rules: *mr-only
 
@@ -35,7 +35,7 @@ npm-cache:
   # See: https://gitlab.com/gitlab-org/gitlab/-/issues/224650
   # See: https://github.com/npm/cli/issues/564
   stage: .pre
-  image: node:14-bullseye-slim
+  image: node:16-bullseye-slim
   rules:
     - changes:
         - package.json
@@ -57,10 +57,16 @@ npm-cache:
 test-quality:
   <<: *merge_requests
   script:
-    - npm run lint || true
+    - npm run lint:quality || true
   artifacts:
     reports:
       codequality: gl-codequality.json
+
+test-format:
+  <<: *merge_requests
+  script:
+    - npm run lint:format
+  allow_failure: true
 
 test-build:
   <<: *merge_requests
