@@ -4,4 +4,4 @@ import pathify from "vuex-pathify";
 // See: https://davestewart.github.io/vuex-pathify/#/setup/config
 pathify.options.mapping = "simple";
 
-export default pathify;
+export { default } from "vuex-pathify";

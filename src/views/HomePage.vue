@@ -19,7 +19,7 @@ import KbTodoList from "@/components/KbTodoList.vue"; // @ is an alias to /src
 import { BAvatar } from "bootstrap-vue";
 
 export default {
-  name: "Home",
+  name: "HomePage",
   components: {
     BAvatar,
     KbTodoList,

@@ -9,7 +9,7 @@
 import { BCalendar } from "bootstrap-vue";
 
 export default {
-  name: "Home",
+  name: "AboutPage",
   components: {
     BCalendar,
   },
