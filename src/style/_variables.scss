@@ -1,0 +1,24 @@
+@import "node_modules/bootstrap/scss/variables";
+
+// Define all app variables
+// See reference: https://bootstrap-vue.org/docs/reference/color-variants
+// See also: https://getbootstrap.com/docs/4.0/getting-started/theming/
+
+$primary: var(--primary);
+$body-bg: var(--body-bg);
+$body-color: var(--body-color);
+
+$theme-colors: (
+  "primary": $primary,
+);
+
+// CSS variable defaults
+:root {
+  --primary: #f20065; // hsl(335, 100%, 47%)
+  --primary-h: 335;
+  --primary-s: 100%;
+  --primary-l: 47%;
+
+  --body-bg: #f7f7f7;
+  --body-color: #000;
+}

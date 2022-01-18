@@ -12,7 +12,7 @@ module.exports = {
   configureWebpack: {
     resolve: {
       alias: {
-        // Alias for using source of BootstrapVue
+        // Alias for using source of Bootstrap-Vue
         "bootstrap-vue$": "bootstrap-vue/src/index.js",
       },
     },
