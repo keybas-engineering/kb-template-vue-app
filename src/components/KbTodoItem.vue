@@ -8,10 +8,10 @@
 </template>
 
 <script lang="ts">
-import { TypedVue } from "@/store";
 import { BButtonClose, BFormCheckbox as BCheckbox } from "bootstrap-vue";
+import { defineComponent } from "@vue/composition-api";
 
-export default TypedVue.extend({
+export default defineComponent({
   name: "KbTodoItem",
   components: {
     BButtonClose,

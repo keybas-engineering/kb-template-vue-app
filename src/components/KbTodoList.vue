@@ -11,37 +11,49 @@
         @remove="removeOne(item.id)"
       ></kb-todo-item>
     </ul>
-    <b-button class="ml-2" variant="primary" @click="addTodoItem"
+    <b-form-input v-model="newItemName" class="ml-2" placeholder="Item name" />
+    <b-button class="ml-2" variant="primary" @click="() => addTodoItem(newItemName)"
       >Add an item</b-button
     >
   </div>
 </template>
 
 <script lang="ts">
-import { BButton } from "bootstrap-vue";
+import { BButton, BFormInput } from "bootstrap-vue";
 import KbTodoItem from "./KbTodoItem.vue";
-import { TodoItem } from "@/store/todo-list";
-import { TypedVue } from "@/store";
+import { useTodoList } from "@/store/todo-list";
+import { storeToRefs } from 'pinia';
+import { defineComponent } from "@vue/composition-api";
 
 // TODO demo the store
-export default TypedVue.extend({
+export default defineComponent({
   name: "KbTodoList",
   components: {
     BButton,
+    BFormInput,
     KbTodoItem,
+  },
+  setup() {
+    const todoListStore = useTodoList();
+    const { todoList } = storeToRefs(todoListStore);
+    return { todoListStore, todoList };
   },
   data() {
     return {
-      todoList: [new TodoItem("A new TODO item")] as TodoItem[],
+      newItemName: "",
     };
   },
   methods: {
-    addTodoItem() {
-      this.todoList.push(new TodoItem("Another TODO item"));
+    addTodoItem(name: string) {
+      const trimmedName = name.trim();
+      if (!trimmedName) {
+        return;
+      }
+      this.todoListStore.addItem(trimmedName);
+      this.newItemName = "";
     },
     removeOne(id: string) {
-      const i = this.todoList.findIndex((item) => item.id === id);
-      this.todoList.splice(i, 1);
+      this.todoListStore.removeItem(id);
     },
   },
 });

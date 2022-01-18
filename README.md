@@ -1,7 +1,7 @@
 # Frontend skeleton project
 
 This is a skeleton project for a [Vue 2](https://vuejs.org/) web application.
-It is setup using [TypeScript](https://www.typescriptlang.org/), Vuex stores,
+It is setup using [TypeScript](https://www.typescriptlang.org/), Pinia stores,
 and Vue-Router navigation.
 
 The [Bootstrap-Vue](https://bootstrap-vue.org/) component library has been
@@ -95,16 +95,16 @@ src/
   components/ All Vue single-file components (SFCs) used in this app.
   router/     Declaration of routes for Vue-Router.
   services/   Everything that should be abstracted from the stores, views and components.
-  store/      All Vuex data stores are declared as modules in this directory.
+  store/      All data stores are declared as modules in this directory.
   style/      (S)CSS files for styles that should not be scoped to a given component.
   views/      Definition of views for the routes declared in router/.
 ```
 
 ### Stores and services
 
-Stores have been setup with Vuex's
-[Pathify plugin](https://davestewart.github.io/vuex-pathify/#/intro/pathify),
-that you can use if you're familiar with it, or can uninstall otherwise.
+Stores have been setup with [Pinia](https://pinia.vuejs.org/) and
+[Vueuse](https://vueuse.org/) that are forward-compatible with Vue 3.
+This will ease any future migration.
 
 ### Keeping the documentation up-to-date
 
@@ -162,7 +162,6 @@ section in [deploy/README.md](deploy/README.md#troubleshooting).
 - [babel](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel)
 - [pwa](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa)
 - [router](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router)
-- [vuex](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex)
 - [eslint](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint)
 - [unit-jest](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-unit-jest)
 - [e2e-nightwatch](https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-e2e-nightwatch)
@@ -172,10 +171,10 @@ section in [deploy/README.md](deploy/README.md#troubleshooting).
 
 - [Vue CLI's configuration reference](https://cli.vuejs.org/config/)
 - [Vue-Router](https://router.vuejs.org/)
-- [Vuex](https://vuex.vuejs.org/guide/)
-- [Vuex Pathify](https://davestewart.github.io/vuex-pathify/#/intro/pathify)
+- [Pinia](https://pinia.vuejs.org/)
+- [Vueuse](https://vueuse.org/)
 - [Bootstrap 4](https://getbootstrap.com/docs/4.6/getting-started/introduction/)
-- [BootstrapVue](https://bootstrap-vue.org/docs/components)
+- [Bootstrap-Vue](https://bootstrap-vue.org/docs/components)
 - [Vue Test Utils](https://vue-test-utils.vuejs.org/guides/#getting-started)
 
 ### Recommended tooling

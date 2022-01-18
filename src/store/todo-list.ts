@@ -1,5 +1,6 @@
-import type { StoreOptions } from "vuex";
 import { randomId } from "@/services/random";
+import { useLocalStorage } from "@vueuse/core";
+import { defineStore } from "pinia";
 
 export class TodoItem {
   id: string;
@@ -13,16 +14,19 @@ export class TodoItem {
   }
 }
 
-export const todoList: StoreOptions<TodoItem[]> = {
-  state: () => [],
-  mutations: {
-    append(state, item: TodoItem) {
-      state.push(item);
-    },
-  },
+export const useTodoList = defineStore("todo-list", {
+  state: () => ({
+    todoList: useLocalStorage("todo-list", [] as TodoItem[]),
+  }),
   actions: {
-    addItem({ dispatch }, message: string) {
-      dispatch("append", new TodoItem(message));
+    addItem(message: string) {
+      this.todoList.push(new TodoItem(message));
+    },
+    removeItem(id: string) {
+      const i = this.todoList.findIndex((item) => item.id === id);
+      if (i >= 0) {
+        this.todoList.splice(i, 1);
+      }
     },
   },
-};
+});
