@@ -12,6 +12,7 @@ COPY package*.json ./
 RUN npm ci
 
 # Build
+COPY public ./public
 COPY src ./src
 RUN npm run build
 
@@ -20,6 +21,7 @@ RUN npm run build
 FROM nginx:alpine
 WORKDIR /app
 COPY --from=build-env /app/dist /app
+COPY --from=build-env /app/public /app/public
 COPY deploy/entrypoint.sh /entrypoint.sh
 COPY deploy/nginx.conf /etc/nginx/nginx.conf
 RUN chmod +x /entrypoint.sh

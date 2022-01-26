@@ -11,12 +11,10 @@ services:
   spa:
     image: registry.gitlab.com/france-atelier/templates/template-vue-app:${SPA_VERSION}
     environment:
-      # Port the server must listen to
-      - PORT=${SPA_PORT}
       - NODE_ENV=production
       # Environment variables sent to the browser
       - VUE_APP_IMAGE_API
     networks:
       - app-tier
     ports:
-      - ${SPA_PORT}:${SPA_PORT}
+      - ${SPA_PORT}:80
