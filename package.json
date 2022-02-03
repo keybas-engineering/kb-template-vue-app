@@ -11,6 +11,9 @@
     "lint:format": "prettier --check --ignore-path .gitignore \"**/*.+(json|ts|vue)\""
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@fortawesome/vue-fontawesome": "^2.0.6",
     "@vue/composition-api": "^1.4.5",
     "@vueuse/core": "^7.5.5",
     "bootstrap-vue": "^2.21.2",
