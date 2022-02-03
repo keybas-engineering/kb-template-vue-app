@@ -1,18 +1,23 @@
 @import "node_modules/bootstrap/scss/variables";
 
 // Define all app variables
-// See reference: https://bootstrap-vue.org/docs/reference/color-variants
-// See also: https://getbootstrap.com/docs/4.0/getting-started/theming/
 
+// Theme colors recognized by Bootstrap
+// See reference: https://getbootstrap.com/docs/4.0/getting-started/theming/
 $primary: var(--primary);
 $body-bg: var(--body-bg);
 $body-color: var(--body-color);
 
+// Color variants usable in Bootstrap-Vue components
+// For instance: <b-button variant="primary">Action!</b-button>
+// Related documentation: https://bootstrap-vue.org/docs/reference/color-variants
 $theme-colors: (
   "primary": $primary,
 );
 
 // CSS variable defaults
+// For variables used in $theme-colors, HSL values must be declared individually
+// See ./override/_functions.scss for more details
 :root {
   --primary: #f20065; // hsl(335, 100%, 47%)
   --primary-h: 335;
