@@ -12,7 +12,10 @@
       ></kb-todo-item>
     </ul>
     <b-form-input v-model="newItemName" class="ml-2" placeholder="Item name" />
-    <b-button class="ml-2" variant="primary" @click="() => addTodoItem(newItemName)"
+    <b-button
+      class="ml-2"
+      variant="primary"
+      @click="() => addTodoItem(newItemName)"
       >Add an item</b-button
     >
   </div>
@@ -22,7 +25,7 @@
 import { BButton, BFormInput } from "bootstrap-vue";
 import KbTodoItem from "./KbTodoItem.vue";
 import { useTodoList } from "@/store/todo-list";
-import { storeToRefs } from 'pinia';
+import { storeToRefs } from "pinia";
 import { defineComponent } from "@vue/composition-api";
 
 // TODO demo the store
