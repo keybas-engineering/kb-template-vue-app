@@ -2,14 +2,16 @@
 FROM node:16-bullseye-slim AS build-env
 WORKDIR /app
 COPY .npmrc ./
+COPY package*.json ./
+RUN npm ci
+
+# Configure
 COPY tsconfig.json ./
 COPY vue.config.js ./
 COPY babel.config.js ./
 COPY .eslintrc.js ./
 COPY .eslintignore ./
 COPY .browserslistrc ./
-COPY package*.json ./
-RUN npm ci
 
 # Build
 COPY public ./public

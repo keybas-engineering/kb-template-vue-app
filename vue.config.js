@@ -4,6 +4,8 @@
 
 const { resolve } = require("path");
 
+const title = "KB Vue App";
+
 /**
  * @type {import('@vue/cli-service').ProjectOptions}
  */
@@ -60,5 +62,32 @@ module.exports = {
         };
         return options;
       });
+    config.plugin("html").tap((args) => {
+      args[0].title = title;
+      return args;
+    });
+  },
+  pwa: {
+    name: title,
+    iconPaths: {
+      // favicon16 (16x16), favicon32 (32x32), appleTouchIcon (180x180), msTileImage (144x144), maskIcon (?)
+      favicon32: "favicon.ico",
+      // eslint-disable-next-line unicorn/no-null
+      maskIcon: null,
+    },
+    manifestOptions: {
+      name: title,
+      short_name: title,
+      theme_color: "#f20065",
+      icons: [
+        // Suggested sizes for all devices, with type image/png (drop the .ico):
+        // 48x48, 72x72, 96x96, 144x144, 168x168, 192x192, 256x256, 512x512
+        {
+          src: "favicon.ico",
+          sizes: "32x32",
+          type: "image/vnd.microsoft.icon",
+        },
+      ],
+    },
   },
 };
