@@ -235,3 +235,28 @@
     @return render-hsla(0, 0%, $lightness, 1);
   }
 }
+
+@function theme-color-level($color-name: "primary", $level: 0) {
+  $color: theme-color($color-name);
+  @if ($level == 0) {
+    @return $color;
+  }
+
+  $amount: $theme-color-interval * abs($level) / 100%;
+  $c: to-hsl($color);
+  $h: map-get($c, h);
+  $s: map-get($c, s);
+  $l: map-get($c, l);
+  $a: map-get($c, a);
+
+  @if ($level > 0) {
+    // Darken -X%: L = L * (1 - X)
+    $rl: calc((#{$l} * #{1 - $amount}));
+    @return render-hsla($h, $s, $rl, $a);
+  }
+  @if ($level < 0) {
+    // Ligthen +X%: L = L + X * (100 - L)
+    $rl: calc(#{$l} + #{$amount} * (100% - #{$l}));
+    @return render-hsla($h, $s, $rl, $a);
+  }
+}
