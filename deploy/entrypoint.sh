@@ -22,6 +22,7 @@ do
     eval value="\$$variable"
     sed -i 's|process.env.'${variable}'|"'${value}'"|g' $file
     sed -i 's|Object({[^}]*}).'${variable}'|"'${value}'"|g' $file
+    sed -i 's|{[^}]*}.'${variable}')|"'${value}'")|g' $file
   done
 done
 # JS .map files
